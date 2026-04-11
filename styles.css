@@ -1,0 +1,675 @@
+/* ====================================
+   WCTKD Birthday Landing Page — Styles
+   ==================================== */
+
+
+/* ------------------------------------
+   CSS VARIABLES / DESIGN TOKENS
+   ------------------------------------ */
+
+:root {
+  --brand:       #193F7D;
+  --text:        #111111;
+  --muted:       #666666;
+  --light:       #999999;
+  --border:      #CACACA;
+  --border-slot: #D4D4D8;
+  --ff: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+}
+
+
+/* ------------------------------------
+   RESET & BASE
+   ------------------------------------ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--ff);
+  color: var(--text);
+}
+
+.page {
+  width: 100%;
+  max-width: 393px;
+  background: #ffffff;
+}
+
+
+/* ------------------------------------
+   HEADER
+   ------------------------------------ */
+
+.hdr {
+  padding: 10px 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logo-badge {
+  width: 28px;
+  height: 28px;
+  background: var(--brand);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.logo-wordmark {
+  font-size: 8.5px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Applied when you swap in <img class="logo-img"> */
+.logo-img {
+  height: 30px;
+  width: auto;
+}
+
+
+/* ------------------------------------
+   INVITATION INTRO
+   ------------------------------------ */
+
+.inv-tag {
+  display: block;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--muted);
+  padding: 4px 16px 2px;
+}
+
+.main-heading {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.05;
+  color: #0a0a0a;
+  padding: 2px 16px 9px;
+  letter-spacing: -0.3px;
+}
+
+.intro-text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #222;
+  padding: 0 16px 15px;
+}
+
+
+/* ------------------------------------
+   BANNER IMAGE PLACEHOLDER
+   ------------------------------------ */
+
+.banner-placeholder {
+  width: 100%;
+  height: 145px;
+  background: #D0D0D0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-placeholder-hint {
+  font-size: 11px;
+  font-style: italic;
+  color: #888;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+
+/* ------------------------------------
+   SCHEDULE FORM SECTION
+   ------------------------------------ */
+
+.sched-section {
+  padding: 18px 16px 0;
+}
+
+.sched-heading {
+  font-size: 18.5px;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.name-slot {
+  border-bottom: 1.5px solid #0a0a0a;
+  display: inline-block;
+  min-width: 56px;
+  line-height: 1;
+  vertical-align: bottom;
+}
+
+.sched-sub {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+
+.sched-note {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #222;
+  line-height: 1;
+}
+
+.field input {
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 12.5px;
+  font-family: var(--ff);
+  color: var(--text);
+  outline: none;
+  background: #fff;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field input::placeholder {
+  color: #C0C0C0;
+  font-size: 12px;
+}
+
+.field input:focus {
+  border-color: var(--brand);
+}
+
+
+/* ------------------------------------
+   LOCATION & TIME SECTION
+   ------------------------------------ */
+
+.loc-section {
+  padding: 18px 16px 18px;
+}
+
+.loc-heading {
+  font-size: 18.5px;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.loc-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 13px;
+  line-height: 1.4;
+}
+
+.loc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.loc-btn {
+  border: 1px solid var(--brand);
+  border-radius: 6px;
+  padding: 9px 8px;
+  text-align: left;
+  cursor: pointer;
+  background: #ffffff;
+  transition: background 0.17s, color 0.17s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.loc-btn:hover:not(.active) {
+  background: #EEF2FA;
+}
+
+.loc-btn.active {
+  background: var(--brand);
+}
+
+.loc-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.loc-btn.active .loc-name {
+  color: #ffffff;
+}
+
+.loc-addr {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.loc-btn.active .loc-addr {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+
+/* ------------------------------------
+   WEEK NAVIGATION
+   ------------------------------------ */
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.week-btn {
+  font-family: var(--ff);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand);
+  background: none;
+  border: 1px solid var(--brand);
+  border-radius: 4px;
+  padding: 4px 9px;
+  cursor: pointer;
+  line-height: 1.3;
+  transition: background 0.13s, color 0.13s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.week-btn:hover:not(:disabled) {
+  background: var(--brand);
+  color: #fff;
+}
+
+.week-btn:disabled {
+  color: var(--light);
+  border-color: var(--border-slot);
+  cursor: default;
+}
+
+.week-range {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.2px;
+}
+
+
+/* ------------------------------------
+   TIME GRID
+   ------------------------------------ */
+
+.times-wrap {
+  display: none;
+}
+
+.times-wrap.visible {
+  display: block;
+}
+
+.days-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.day-col {
+  text-align: center;
+}
+
+.day-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+.day-date {
+  font-size: 8.5px;
+  font-weight: 400;
+  color: var(--light);
+  line-height: 1.3;
+}
+
+.times-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  align-items: start;
+}
+
+.time-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.time-btn {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border-slot);
+  border-radius: 4px;
+  padding: 5px 1px;
+  font-size: 9.5px;
+  font-family: var(--ff);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.2;
+  transition: border-color 0.13s, color 0.13s, background 0.13s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.time-btn:hover:not(.past) {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.time-btn.selected {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Past / unavailable slots */
+.time-btn.past {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+  color: #c0c0c0;
+  cursor: default;
+  text-decoration: line-through;
+  text-decoration-color: #d0d0d0;
+}
+
+
+/* ------------------------------------
+   FOOTER CONFIRMATION BAR
+   ------------------------------------ */
+
+.footer-bar {
+  display: none;
+  border-top: 1.5px solid #EBEBEB;
+  padding: 13px 16px 15px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-bar.visible {
+  display: flex;
+}
+
+.footer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-day {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.3;
+}
+
+.footer-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.3;
+}
+
+.footer-loc {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.35;
+}
+
+.footer-addr {
+  font-size: 10.5px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+
+/* ------------------------------------
+   INVITATION CARD SELECTOR (footer right)
+   ------------------------------------ */
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.card-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* 2×2 grid of card buttons */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.card-btn {
+  width: 58px;
+  height: 42px;
+  border: 1.5px solid var(--border-slot);
+  border-radius: 5px;
+  padding: 3px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.13s, box-shadow 0.13s;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.card-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.card-btn:hover {
+  border-color: var(--brand);
+}
+
+.card-btn.selected {
+  border-color: var(--brand);
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(25, 63, 125, 0.15);
+}
+
+
+/* ------------------------------------
+   SUBMIT BUTTON
+   ------------------------------------ */
+
+.sched-btn {
+  background: var(--brand);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-family: var(--ff);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.35;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.sched-btn:disabled {
+  background: #c0c0c0;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.sched-btn-sub {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  opacity: 0.78;
+  margin-top: 2px;
+  line-height: 1.2;
+}
+
+
+/* ------------------------------------
+   CONFIRMATION / SUCCESS SCREEN
+   ------------------------------------ */
+
+.confirm-wrap {
+  padding: 48px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.confirm-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #193F7D;
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.confirm-heading {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0a0a0a;
+  margin-bottom: 6px;
+}
+
+.confirm-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.confirm-card {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+.confirm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 12.5px;
+  padding: 5px 0;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.confirm-row:last-child {
+  border-bottom: none;
+}
+
+.confirm-row span {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.confirm-row strong {
+  font-weight: 600;
+  color: #0a0a0a;
+  text-align: right;
+}
+
+.confirm-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>World Champion Taekwondo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="logo-wrap">
+      <img id="logoImg" src="" alt="" class="logo-img">
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <span class="inv-tag" id="tagline"></span>
+  <h1 class="main-heading" id="mainHeading"></h1>
+  <div class="intro-text" id="introText"></div>
+
+  <!-- BANNER -->
+  <img id="bannerImg" src="" alt="World Champion Taekwondo" class="banner-img">
+
+  <!-- SCHEDULE FORM -->
+  <section class="sched-section">
+    <div class="sched-heading" id="formHeading"></div>
+    <div class="sched-note"    id="formNote"></div>
+    <div class="form-grid">
+      <div class="field">
+        <label for="childName">Child Name*</label>
+        <input type="text" id="childName" placeholder="Enter child name" oninput="updateName(this.value)">
+      </div>
+      <div class="field">
+        <label for="childAge">Child Age*</label>
+        <input type="text" id="childAge" placeholder="Enter child age">
+      </div>
+      <div class="field">
+        <label for="parentName">Parent/Guardian Name*</label>
+        <input type="text" id="parentName" placeholder="Enter parent/guardian name">
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number*</label>
+        <input type="tel" id="phone" placeholder="Enter phone number">
+      </div>
+      <div class="field full">
+        <label for="email">Email Address*</label>
+        <input type="email" id="email" placeholder="Enter email address">
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & TIME -->
+  <section class="loc-section">
+    <div class="loc-heading">Location &amp; Time</div>
+    <div class="loc-note">Choose a location to see available times. All lessons are 30 minutes.</div>
+
+    <!-- Built from config.json by script.js -->
+    <div class="loc-grid" id="locGrid"></div>
+
+    <div class="times-wrap" id="timesWrap">
+      <div class="week-nav">
+        <button class="week-btn" id="prevWeekBtn" onclick="shiftWeek(-1)">&#8592; Prev</button>
+        <span class="week-range" id="weekRange"></span>
+        <button class="week-btn" id="nextWeekBtn" onclick="shiftWeek(1)">Next &#8594;</button>
+      </div>
+      <div class="days-header" id="daysHeader"></div>
+      <div class="times-grid"  id="timesGrid"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER CONFIRMATION BAR -->
+  <div class="footer-bar" id="footerBar">
+    <div class="footer-info">
+      <div class="footer-day"  id="fDay"></div>
+      <div class="footer-time" id="fTime"></div>
+      <div class="footer-loc"  id="fLoc"></div>
+      <div class="footer-addr" id="fAddr"></div>
+    </div>
+    <div class="footer-right">
+      <div class="card-label">Your invitation card:</div>
+      <!-- Built from config.json by script.js -->
+      <div class="card-grid" id="cardGrid"></div>
+      <button class="sched-btn" id="schedBtn" onclick="scheduleLesson()" disabled>
+        Schedule Lesson!
+        <span class="sched-btn-sub">A confirmation email will be sent.</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

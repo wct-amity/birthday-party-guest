@@ -1,0 +1,71 @@
+{
+  "site": {
+    "pageTitle":   "Taekwondo Trial Class – World Champion Taekwondo",
+    "tagline":     "Special Invitation for Party Guests",
+    "heading":     "Taekwondo Trial Class",
+    "intro":       "Thanks for coming to our birthday party! Your invitation card includes a free class and a special perk. Fill out the form below to book your lesson!",
+    "formHeading": "Schedule your semi-private lesson!",
+    "formNote":    "No experience needed! Our masters will guide you through everything. Just bring comfortable clothes, a water bottle, and your special invitation card.",
+    "lessonDurationMins": 30
+  },
+
+  "images": {
+    "logo":   "media/logo.png",
+    "banner": "media/banner.png"
+  },
+
+  "locations": {
+    "amity": {
+      "label":        "Amity",
+      "name":         "Amity World Champion Taekwondo",
+      "addr":         "152 Amity Rd, New Haven, CT 06515",
+      "calEventTypeId":  5300770
+    },
+    "eastrock": {
+      "label":        "East Rock",
+      "name":         "East Rock World Champion Taekwondo",
+      "addr":         "50 Mitchell Dr, New Haven, CT 06511",
+      "calEventTypeId": 5302192
+    },
+    "southbury": {
+      "label":        "Southbury",
+      "name":         "Southbury World Champion Taekwondo",
+      "addr":         "Insert address here",
+      "calEventTypeId": null
+    }
+  },
+
+  "schedules": {
+    "amity": {
+      "1": ["3:00 PM", "3:30 PM", "5:30 PM", "6:00 PM"],
+      "2": ["3:00 PM", "3:30 PM", "5:30 PM", "5:40 PM", "7:00 PM"],
+      "3": ["3:00 PM", "3:30 PM", "5:30 PM", "6:00 PM", "7:00 PM"],
+      "4": ["3:00 PM", "3:30 PM", "5:30 PM", "5:40 PM"],
+      "5": ["3:00 PM", "3:30 PM", "7:00 PM"],
+      "6": ["9:00 AM", "9:30 AM", "12:00 PM"]
+    },
+    "eastrock": {
+      "1": ["3:00 PM", "6:10 PM"],
+      "2": ["3:00 PM", "3:30 PM"],
+      "3": ["3:00 PM", "6:10 PM"],
+      "4": ["3:00 PM", "3:30 PM"],
+      "5": ["3:00 PM", "6:30 PM"],
+      "6": ["9:00 AM", "9:30 AM", "12:50 PM"]
+    },
+    "southbury": {
+      "1": ["4:10 PM", "4:40 PM"],
+      "2": ["4:10 PM", "6:00 PM"],
+      "3": ["4:10 PM"],
+      "4": ["4:10 PM", "6:00 PM"],
+      "5": ["4:10 PM", "6:40 PM"],
+      "6": ["9:30 AM", "10:00 AM", "1:00 PM"]
+    }
+  },
+
+  "cards": [
+    { "id": "nunchaku", "label": "Nunchaku Card", "src": "media/nunchuku-card.png" },
+    { "id": "tshirt",   "label": "T-Shirt Card",  "src": "media/shirt-card.png"  },
+    { "id": "sword",    "label": "Sword Card",     "src": "media/sword-card.png"   },
+    { "id": "uniform",  "label": "Uniform Card",   "src": "media/uniform-card.png" }
+  ]
+}
