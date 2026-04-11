@@ -10,8 +10,8 @@
   },
 
   "images": {
-    "logo":   "/media/logo.png",
-    "banner": "/media/banner.png"
+    "logo":   "media/logo.png",
+    "banner": "media/banner.png"
   },
 
   "locations": {
@@ -63,9 +63,9 @@
   },
 
   "cards": [
-    { "id": "nunchaku", "label": "Nunchaku Card", "src": "/media/nunchuku-card.png" },
-    { "id": "tshirt",   "label": "T-Shirt Card",  "src": "/media/shirt-card.png"  },
-    { "id": "sword",    "label": "Sword Card",     "src": "/media/sword-card.png"   },
-    { "id": "uniform",  "label": "Uniform Card",   "src": "/media/uniform-card.png" }
+    { "id": "nunchaku", "label": "Nunchaku Card", "src": "media/nunchuku-card.png" },
+    { "id": "tshirt",   "label": "T-Shirt Card",  "src": "media/shirt-card.png"  },
+    { "id": "sword",    "label": "Sword Card",     "src": "media/sword-card.png"   },
+    { "id": "uniform",  "label": "Uniform Card",   "src": "media/uniform-card.png" }
   ]
 }
