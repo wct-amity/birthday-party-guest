@@ -19,7 +19,7 @@ let selectedCard    = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const res = await fetch('/config.json');
+    const res = await fetch('./config.json');
     CONFIG = await res.json();
   } catch (err) {
     console.error('Failed to load config.json:', err);
