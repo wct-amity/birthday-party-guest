@@ -10,8 +10,8 @@
   },
 
   "images": {
-    "logo":   "media/logo.png",
-    "banner": "media/banner.png"
+    "logo":   "media/logo.PNG",
+    "banner": "media/banner.PNG"
   },
 
   "locations": {
