@@ -12,6 +12,10 @@ let currentLocation = null;
 let weekOffset      = 0;
 let selectedCard    = null;
 
+// Cache fetched availability so we don't re-hit Cal.com on
+// every tiny interaction. Key: "eventTypeId|YYYY-MM-DD"
+const slotCache = {};
+
 
 // ============================================================
 //  INIT — fetch config then boot the page
@@ -108,18 +112,28 @@ function getMonday(offset) {
   return mon;
 }
 
-function renderWeek() {
-  const mon       = getMonday(weekOffset);
-  const now       = new Date();
-  const DAY_NAMES = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  const JS_DAYS   = [1, 2, 3, 4, 5, 6];
-  const schedule  = CONFIG.schedules[currentLocation] || {};
 
+// ============================================================
+//  RENDER WEEK — now fetches live slots from Cal.com
+// ============================================================
+
+async function renderWeek() {
+  const loc = CONFIG.locations[currentLocation];
+  if (!loc?.calEventTypeId) {
+    renderWeekError('No event configured for this location yet.');
+    return;
+  }
+
+  const mon = getMonday(weekOffset);
   const sat = new Date(mon); sat.setDate(mon.getDate() + 5);
+
+  // Week range label
   const fmt = d => `${d.getMonth() + 1}/${d.getDate()}`;
   document.getElementById('weekRange').textContent = `${fmt(mon)} – ${fmt(sat)}`;
   document.getElementById('prevWeekBtn').disabled  = weekOffset === 0;
 
+  // Build day header immediately (no async needed)
+  const DAY_NAMES = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const hdr = document.getElementById('daysHeader');
   hdr.innerHTML = '';
   for (let i = 0; i < 6; i++) {
@@ -131,31 +145,87 @@ function renderWeek() {
     hdr.appendChild(col);
   }
 
+  // Show loading skeleton while we fetch
   const grid = document.getElementById('timesGrid');
   grid.innerHTML = '';
   for (let i = 0; i < 6; i++) {
-    const d     = new Date(mon); d.setDate(mon.getDate() + i);
-    const slots = schedule[String(JS_DAYS[i])] || [];
-    const col   = document.createElement('div');
+    const col = document.createElement('div');
+    col.className = 'time-col';
+    col.innerHTML = `<div class="slot-loading">…</div>`;
+    grid.appendChild(col);
+  }
+
+  // ── Fetch from Cal.com (with cache) ──────────────────────
+  const cacheKey  = `${loc.calEventTypeId}|${mon.toISOString().slice(0, 10)}`;
+  let slotsByDate = slotCache[cacheKey];
+
+  if (!slotsByDate) {
+    try {
+      // endTime = Sunday midnight (end of Sat)
+      const endDate = new Date(sat); endDate.setDate(sat.getDate() + 1);
+      const params  = new URLSearchParams({
+        eventTypeId: loc.calEventTypeId,
+        startTime:   mon.toISOString(),
+        endTime:     endDate.toISOString(),
+      });
+
+      const res  = await fetch(`/api/availability?${params}`);
+      const data = await res.json();
+
+      if (!data.success) throw new Error(data.error || 'Unknown error');
+
+      slotsByDate = data.slots;            // { "YYYY-MM-DD": ["3:00 PM", …] }
+      slotCache[cacheKey] = slotsByDate;   // cache it
+
+    } catch (err) {
+      console.error('Slot fetch error:', err);
+      renderWeekError('Could not load availability. Please try again.');
+      return;
+    }
+  }
+
+  // ── Render slots into the grid ────────────────────────────
+  const now = new Date();
+  grid.innerHTML = '';
+
+  for (let i = 0; i < 6; i++) {
+    const d       = new Date(mon); d.setDate(mon.getDate() + i);
+    const dateKey = d.toISOString().slice(0, 10);          // "YYYY-MM-DD"
+    const times   = slotsByDate[dateKey] || [];
+    const col     = document.createElement('div');
     col.className = 'time-col';
 
-    slots.forEach(timeStr => {
-      const isPast = d.toDateString() === now.toDateString() || slotDateTime(d, timeStr) <= now;
-      const btn    = document.createElement('button');
-      btn.className   = 'time-btn' + (isPast ? ' past' : '');
-      btn.textContent = timeStr;
-      btn.disabled    = isPast;
-      if (!isPast) {
-        const dayLabel = d.toLocaleDateString('en-US', {
-          weekday: 'long', month: 'long', day: 'numeric'
-        });
-        btn.onclick = () => selectTime(btn, dayLabel, timeStr);
-      }
-      col.appendChild(btn);
-    });
+    if (times.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'slot-empty';
+      empty.textContent = '—';
+      col.appendChild(empty);
+    } else {
+      times.forEach(timeStr => {
+        const slotDt = slotDateTime(d, timeStr);
+        const isPast = slotDt <= now;
+        const btn    = document.createElement('button');
+        btn.className   = 'time-btn' + (isPast ? ' past' : '');
+        btn.textContent = timeStr;
+        btn.disabled    = isPast;
+        if (!isPast) {
+          const dayLabel = d.toLocaleDateString('en-US', {
+            weekday: 'long', month: 'long', day: 'numeric'
+          });
+          btn.onclick = () => selectTime(btn, dayLabel, timeStr);
+        }
+        col.appendChild(btn);
+      });
+    }
 
     grid.appendChild(col);
   }
+}
+
+// Show an inline error message across the time grid
+function renderWeekError(message) {
+  const grid = document.getElementById('timesGrid');
+  grid.innerHTML = `<div class="slot-error" style="grid-column:1/-1;padding:1rem;color:#c00;text-align:center">${message}</div>`;
 }
 
 function slotDateTime(date, timeStr) {
