@@ -31,7 +31,6 @@ export default async function handler(req, res) {
     const calRes = await fetch(calUrl.toString(), {
       headers: {
         'Authorization':    `Bearer ${API_KEY}`,
-        'cal-api-version':  '2024-09-04',
         'Content-Type':     'application/json',
       },
     });
